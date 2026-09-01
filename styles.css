@@ -311,6 +311,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  flex-wrap: nowrap;
 }
 
 .emergency-link {
@@ -340,6 +341,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .top-phone {
   color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
 }
 
 .pitch-mode-btn {
@@ -362,6 +364,12 @@ h1, h2, h3, h4, h5, h6 {
   .top-location, .top-phone {
     display: none;
   }
+}
+
+@media (max-width: 1180px) and (min-width: 992px) {
+  .top-location { display: none; }
+  .top-bar-container { gap: 0.5rem; }
+  .top-bar-right { gap: 0.75rem; }
 }
 
 @media (max-width: 600px) {
@@ -2282,6 +2290,29 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5rem;
 }
 
+.consent-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.consent-checkbox input {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.15rem;
+  flex: 0 0 auto;
+}
+
+.consent-checkbox a {
+  color: var(--primary-blue);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 /* ================= FOOTER ================= */
 .site-footer {
   background-color: var(--primary-navy);
@@ -2417,6 +2448,19 @@ h1, h2, h3, h4, h5, h6 {
   color: #f59e0b;
   text-decoration: underline;
 }
+
+/* ================= LEGAL PAGES ================= */
+.legal-page {
+  max-width: 850px;
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+.legal-page h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 1.5rem 0 0.75rem; }
+.legal-page h2 { font-size: 1.3rem; margin: 2rem 0 0.6rem; }
+.legal-page p { color: var(--text-main); line-height: 1.7; margin-bottom: 1rem; }
+.legal-page a { color: var(--primary-blue); text-decoration: underline; }
+.legal-back-link { font-weight: 700; }
 
 /* ================= MOBILE STICKY FLOATING BAR ================= */
 .mobile-floating-bar {

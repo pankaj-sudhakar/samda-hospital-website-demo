@@ -1,7 +1,7 @@
 /**
  * SAMDA SUPERSPECIALITY HOSPITAL - JAVASCRIPT LOGIC
  * High-performance, modular ES application handling OPD booking, WhatsApp triage,
- * doctor filtering, insurance search, interactive modals, and pitch demonstration.
+ * doctor filtering, insurance search, interactive modals, and WhatsApp booking.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initInsuranceLookup();
   initFAQAccordion();
   initContactInquiry();
-  initPitchMode();
   updateDynamicYear();
 });
 
@@ -248,6 +247,7 @@ function initBookingEngine() {
   // Confirm via WhatsApp
   if (confirmWhatsappBtn) {
     confirmWhatsappBtn.addEventListener('click', () => {
+      if (!appointmentForm.reportValidity()) return;
       const doctor = document.getElementById('bookDoctor').value || 'Any Available Specialist';
       const date = document.getElementById('bookDate').value || 'Today';
       const time = document.getElementById('bookTime').value || 'Morning Slot';
@@ -258,12 +258,6 @@ function initBookingEngine() {
       
       const paymentEl = document.querySelector('input[name="paymentType"]:checked');
       const paymentType = paymentEl ? paymentEl.value : 'General';
-
-      if (!name || name === 'Patient') {
-        showToast('Please enter the patient full name.', 'error');
-        document.getElementById('patientName').focus();
-        return;
-      }
 
       const msg = `*NEW OPD APPOINTMENT REQUEST - SAMDA HOSPITAL*%0A%0A` +
         `👤 *Patient Name:* ${encodeURIComponent(name)}%0A` +
@@ -279,20 +273,16 @@ function initBookingEngine() {
       const waUrl = `https://wa.me/919425529769?text=${msg}`;
       window.open(waUrl, '_blank');
       closeModal();
-      showToast('Opening WhatsApp to confirm your appointment...', 'success');
+      showToast('Opening WhatsApp to send your appointment request...', 'success');
     });
   }
 
-  // Submit via Web Form
+  // This static site never claims to store an online request. Its submit action
+  // uses the same user-consented WhatsApp handoff as the primary booking route.
   if (appointmentForm) {
     appointmentForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const patientName = document.getElementById('patientName').value;
-      const doctor = document.getElementById('bookDoctor').value;
-      
-      closeModal();
-      showToast(`Thank you, ${patientName}! Your request for ${doctor} has been received. Our desk will call you shortly.`, 'success');
-      appointmentForm.reset();
+      confirmWhatsappBtn.click();
     });
   }
 }
@@ -364,6 +354,7 @@ function initContactInquiry() {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      if (!form.reportValidity()) return;
       const name = document.getElementById('inqName').value;
       const phone = document.getElementById('inqPhone').value;
       const dept = document.getElementById('inqDept').value;
@@ -378,58 +369,13 @@ function initContactInquiry() {
       const waUrl = `https://wa.me/919425529769?text=${waText}`;
       window.open(waUrl, '_blank');
 
-      showToast(`Inquiry sent! We will connect with you on ${phone} promptly.`, 'success');
+      showToast('Opening WhatsApp to send your callback request...', 'success');
       form.reset();
     });
   }
 }
 
-// ================= 9. PITCH MODE PROPOSAL MODAL =================
-function initPitchMode() {
-  const pitchModal = document.getElementById('pitchModal');
-  const openPitchBtn = document.getElementById('openPitchBtn');
-  const mobilePitchBtn = document.getElementById('mobilePitchBtn');
-  const footerPitchBtn = document.getElementById('footerPitchBtn');
-  const closePitchModalBtn = document.getElementById('closePitchModal');
-  const pitchShareBtn = document.getElementById('pitchShareBtn');
-
-  function openPitch() {
-    pitchModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePitch() {
-    pitchModal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  if (openPitchBtn) openPitchBtn.addEventListener('click', openPitch);
-  if (mobilePitchBtn) mobilePitchBtn.addEventListener('click', openPitch);
-  if (footerPitchBtn) footerPitchBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    openPitch();
-  });
-  if (closePitchModalBtn) closePitchModalBtn.addEventListener('click', closePitch);
-
-  if (pitchModal) {
-    pitchModal.addEventListener('click', (e) => {
-      if (e.target === pitchModal) closePitch();
-    });
-  }
-
-  if (pitchShareBtn) {
-    pitchShareBtn.addEventListener('click', () => {
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(window.location.href);
-        showToast('Demo link copied to clipboard! Ready to share with Dr. Jain.', 'success');
-      } else {
-        showToast('Share URL: ' + window.location.href, 'success');
-      }
-    });
-  }
-}
-
-// ================= 10. TOAST NOTIFICATION UTILITY =================
+// ================= 9. TOAST NOTIFICATION UTILITY =================
 function showToast(message, type = 'info') {
   const container = document.getElementById('toastContainer');
   if (!container) return;
