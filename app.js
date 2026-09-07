@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initDepartmentDoctorLinks();
   initBookingMitra();
   renameBookingControls();
+  enhanceDoctorCards();
+  optimizeImages();
   initInsuranceLookup();
   initFAQAccordion();
   initContactInquiry();
@@ -220,6 +222,36 @@ function renameBookingControls() {
   document.querySelectorAll('.book-specialty-btn, .book-doc-btn').forEach(button => {
     button.innerHTML = '<i class="fa-solid fa-user-clock"></i> Check Availability';
     button.setAttribute('aria-label', `Check doctor availability: ${button.dataset.doctor || button.dataset.dept || ''}`.trim());
+  });
+}
+
+function enhanceDoctorCards() {
+  const departmentNames = {
+    urology: 'Urology & Renal Care', gastro: 'GI & Laparoscopic Surgery',
+    ortho: 'Orthopedics & Trauma', derma: 'Dermatology & Cosmetology',
+    gynae: 'Obstetrics & Gynecology', general: 'General Surgery',
+    physician: 'General Medicine & ICU', neuro: 'Neurosurgery',
+    dental: 'Dental & Maxillofacial'
+  };
+
+  document.querySelectorAll('.doctor-card').forEach(card => {
+    const department = departmentNames[card.dataset.dept];
+    const meta = card.querySelector('.doc-meta');
+    if (department && meta && !meta.querySelector('.doc-department')) {
+      const link = document.createElement('a');
+      link.className = 'doc-department';
+      link.href = '#department-teams';
+      link.textContent = department;
+      link.setAttribute('aria-label', `View ${department} department`);
+      meta.append(link);
+    }
+  });
+}
+
+function optimizeImages() {
+  document.querySelectorAll('main img').forEach(image => {
+    image.decoding = 'async';
+    if (!image.closest('.hero-section')) image.loading = 'lazy';
   });
 }
 
