@@ -2290,6 +2290,45 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5rem;
 }
 
+/* ================= DEPARTMENTS & DOCTORS CONNECTION ================= */
+.department-team-section {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, #eff9ff 0%, var(--surface-white) 100%);
+}
+
+.department-team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 680px) {
+  .department-team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1080px) {
+  .department-team-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.department-team-card {
+  padding: 1.35rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--surface-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.department-team-card h3 { font-size: 1rem; margin-bottom: 0.45rem; }
+.department-team-card p { color: var(--text-muted); font-size: 0.85rem; min-height: 2.5rem; }
+.department-doctor-link {
+  color: var(--primary-blue);
+  background: transparent;
+  font-size: 0.84rem;
+  font-weight: 800;
+  padding: 0.5rem 0 0;
+}
+.department-doctor-link:hover { text-decoration: underline; }
+
 .consent-checkbox {
   display: flex;
   align-items: flex-start;
@@ -2461,6 +2500,37 @@ h1, h2, h3, h4, h5, h6 {
 .legal-page p { color: var(--text-main); line-height: 1.7; margin-bottom: 1rem; }
 .legal-page a { color: var(--primary-blue); text-decoration: underline; }
 .legal-back-link { font-weight: 700; }
+
+/* ================= MEDIA, CAREERS & STATIC PAGES ================= */
+.static-page-header { position: relative; background: var(--surface-white); }
+.page-hero { padding: 5rem 0 4rem; background: linear-gradient(135deg, #e0f2fe, #f0fdf4); }
+.page-hero h1 { font-size: clamp(2.3rem, 6vw, 4rem); margin: 0.75rem 0; }
+.page-hero p { max-width: 700px; color: var(--text-main); font-size: 1.05rem; line-height: 1.7; }
+.media-section, .careers-section { padding: 5rem 0; }
+.media-gallery-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+@media (min-width: 650px) { .media-gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .media-gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+.media-gallery-grid figure { margin: 0; overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--border-color); background: var(--surface-white); }
+.media-gallery-grid img { display: block; width: 100%; height: 230px; object-fit: cover; }
+.media-gallery-grid figcaption { padding: 0.85rem 1rem; font-weight: 700; }
+.social-corner { padding: 5rem 0; background: var(--primary-navy); color: #fff; }
+.social-corner h2 { color: #fff; font-size: 2.2rem; margin: 0.6rem 0; }
+.social-corner p { color: #cbd5e1; line-height: 1.7; }
+.social-corner-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+@media (min-width: 900px) { .social-corner-grid { grid-template-columns: 1fr 1fr; } }
+.social-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0; }
+.social-note { font-size: 0.8rem; }
+.youtube-player { overflow: hidden; border-radius: var(--radius-lg); background: #000; aspect-ratio: 16 / 9; }
+.youtube-player iframe { display: block; width: 100%; height: 100%; border: 0; }
+.careers-layout { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+@media (min-width: 900px) { .careers-layout { grid-template-columns: 1.4fr 0.8fr; } }
+.job-list { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.job-card, .career-apply-card { padding: 1.5rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--surface-white); box-shadow: var(--shadow-sm); }
+.job-card h3, .career-apply-card h2 { margin-bottom: 0.4rem; }
+.job-card p, .career-apply-card p { color: var(--text-muted); line-height: 1.6; }
+.career-apply-card { align-self: start; background: #eff9ff; }
+.career-apply-card > i { font-size: 2rem; color: var(--primary-blue); margin-bottom: 1rem; }
+.career-email { display: block; margin-top: 1rem; text-align: center; color: var(--primary-blue); font-weight: 700; text-decoration: underline; }
 
 /* ================= MOBILE STICKY FLOATING BAR ================= */
 .mobile-floating-bar {

@@ -1,7 +1,7 @@
 /**
  * SAMDA SUPERSPECIALITY HOSPITAL - JAVASCRIPT LOGIC
- * High-performance, modular ES application handling OPD booking, WhatsApp triage,
- * doctor filtering, insurance search, interactive modals, and WhatsApp booking.
+ * Hospital information, doctor-directory filtering, Booking Mitra availability
+ * enquiries, insurance lookup, and accessible interactive components.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroSearch();
   initSpecialtyFilter();
   initDoctorDirectory();
-  initBookingEngine();
+  initDepartmentDoctorLinks();
+  initBookingMitra();
+  renameBookingControls();
   initInsuranceLookup();
   initFAQAccordion();
   initContactInquiry();
@@ -149,12 +151,12 @@ function initSpecialtyFilter() {
     });
   });
 
-  // Handle "Book Specialty OPD" buttons
+  // Handle department availability requests.
   const specialtyBookBtns = document.querySelectorAll('.book-specialty-btn');
   specialtyBookBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const doctorName = btn.getAttribute('data-doctor');
-      openBookingModalWithDoctor(doctorName);
+      openBookingMitraWithDoctor(doctorName);
     });
   });
 }
@@ -195,30 +197,43 @@ function initDoctorDirectory() {
   bookDocBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const doc = btn.getAttribute('data-doctor');
-      openBookingModalWithDoctor(doc);
+      openBookingMitraWithDoctor(doc);
     });
   });
 }
 
-// ================= 5. APPOINTMENT BOOKING ENGINE & WHATSAPP GENERATOR =================
-function initBookingEngine() {
-  const bookingModal = document.getElementById('bookingModal');
-  const closeBookingModalBtn = document.getElementById('closeBookingModal');
+function initDepartmentDoctorLinks() {
+  const links = document.querySelectorAll('.department-doctor-link');
+  const deptSelect = document.getElementById('doctorDeptSelect');
+  const doctors = document.getElementById('doctors');
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      if (deptSelect) deptSelect.value = link.dataset.dept;
+      if (filterDoctors) filterDoctors();
+      doctors?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+function renameBookingControls() {
+  document.querySelectorAll('.book-specialty-btn, .book-doc-btn').forEach(button => {
+    button.innerHTML = '<i class="fa-solid fa-user-clock"></i> Check Availability';
+    button.setAttribute('aria-label', `Check doctor availability: ${button.dataset.doctor || button.dataset.dept || ''}`.trim());
+  });
+}
+
+// ================= 5. BOOKING MITRA AVAILABILITY ENQUIRY =================
+function initBookingMitra() {
+  const bookingModal = document.getElementById('bookingMitraModal');
+  const closeBookingModalBtn = document.getElementById('closeBookingMitraModal');
   const quickBookBtn = document.getElementById('quickBookBtn');
   const heroBookBtn = document.getElementById('heroBookBtn');
   const aboutBookBtn = document.getElementById('aboutBookBtn');
   const mobileBookBtn = document.getElementById('mobileBookBtn');
   const floatingBookBtn = document.getElementById('floatingBookBtn');
-  const appointmentForm = document.getElementById('appointmentForm');
-  const confirmWhatsappBtn = document.getElementById('confirmWhatsappBtn');
-  const bookDateInput = document.getElementById('bookDate');
-
-  // Set minimum date to today
-  if (bookDateInput) {
-    const today = new Date().toISOString().split('T')[0];
-    bookDateInput.min = today;
-    bookDateInput.value = today;
-  }
+  const availabilityForm = document.getElementById('availabilityForm');
+  const confirmWhatsappBtn = document.getElementById('checkAvailabilityBtn');
 
   function openModal() {
     bookingModal.classList.add('active');
@@ -247,48 +262,38 @@ function initBookingEngine() {
   // Confirm via WhatsApp
   if (confirmWhatsappBtn) {
     confirmWhatsappBtn.addEventListener('click', () => {
-      if (!appointmentForm.reportValidity()) return;
+      if (!availabilityForm.reportValidity()) return;
       const doctor = document.getElementById('bookDoctor').value || 'Any Available Specialist';
-      const date = document.getElementById('bookDate').value || 'Today';
-      const time = document.getElementById('bookTime').value || 'Morning Slot';
+      const time = document.getElementById('availabilityWindow').value || 'Today';
       const name = document.getElementById('patientName').value || 'Patient';
       const phone = document.getElementById('patientPhone').value || 'Not provided';
-      const city = document.getElementById('patientCity').value || 'Rajnandgaon';
-      const remarks = document.getElementById('patientRemarks').value || 'Consultation inquiry';
-      
-      const paymentEl = document.querySelector('input[name="paymentType"]:checked');
-      const paymentType = paymentEl ? paymentEl.value : 'General';
+      const remarks = document.getElementById('patientRemarks').value || 'Please share the next available consultation time.';
 
-      const msg = `*NEW OPD APPOINTMENT REQUEST - SAMDA HOSPITAL*%0A%0A` +
+      const msg = `*BOOKING MITRA — DOCTOR AVAILABILITY REQUEST*%0A%0A` +
         `👤 *Patient Name:* ${encodeURIComponent(name)}%0A` +
         `📱 *Contact:* ${encodeURIComponent(phone)}%0A` +
-        `📍 *City/Town:* ${encodeURIComponent(city)}%0A` +
         `🩺 *Specialist:* ${encodeURIComponent(doctor)}%0A` +
-        `📅 *Preferred Date:* ${encodeURIComponent(date)}%0A` +
-        `⏰ *Preferred Slot:* ${encodeURIComponent(time)}%0A` +
-        `💳 *Billing/Scheme:* ${encodeURIComponent(paymentType)}%0A` +
-        `📝 *Problem/Remarks:* ${encodeURIComponent(remarks)}%0A%0A` +
-        `_Please confirm doctor availability and consultation token._`;
+        `⏰ *Preferred time:* ${encodeURIComponent(time)}%0A` +
+        `📝 *Message:* ${encodeURIComponent(remarks)}%0A%0A` +
+        `_Please let me know the doctor's current availability. This is not an appointment booking._`;
 
       const waUrl = `https://wa.me/919425529769?text=${msg}`;
       window.open(waUrl, '_blank');
       closeModal();
-      showToast('Opening WhatsApp to send your appointment request...', 'success');
+      showToast('Opening WhatsApp to ask Booking Mitra about availability...', 'success');
     });
   }
 
-  // This static site never claims to store an online request. Its submit action
-  // uses the same user-consented WhatsApp handoff as the primary booking route.
-  if (appointmentForm) {
-    appointmentForm.addEventListener('submit', (e) => {
+  if (availabilityForm) {
+    availabilityForm.addEventListener('submit', (e) => {
       e.preventDefault();
       confirmWhatsappBtn.click();
     });
   }
 }
 
-function openBookingModalWithDoctor(doctorName) {
-  const bookingModal = document.getElementById('bookingModal');
+function openBookingMitraWithDoctor(doctorName) {
+  const bookingModal = document.getElementById('bookingMitraModal');
   const bookDoctorSelect = document.getElementById('bookDoctor');
 
   if (bookDoctorSelect && doctorName) {

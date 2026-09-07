@@ -80,6 +80,8 @@
           <li><a href="#doctors" class="nav-link">Doctors & OPD</a></li>
           <li><a href="#facilities" class="nav-link">Facilities</a></li>
           <li><a href="#ayushman" class="nav-link">Ayushman & TPA</a></li>
+          <li><a href="media-gallery.html" class="nav-link">Media</a></li>
+          <li><a href="careers.html" class="nav-link">Careers</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -90,10 +92,10 @@
           <img src="assets/certification-nabh.png" alt="NABH Accreditation" class="header-cert-img" onerror="this.style.display='none'">
         </div>
         <a href="https://wa.me/919425529769?text=Hello%20Samda%20Hospital,%20I%20want%20to%20book%20an%20OPD%20appointment." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp header-wa-btn">
-          <i class="fa-brands fa-whatsapp"></i> <span>WhatsApp OPD</span>
+          <i class="fa-brands fa-whatsapp"></i> <span>Ask Booking Mitra</span>
         </a>
         <button class="btn btn-primary header-book-btn" id="quickBookBtn">
-          <i class="fa-regular fa-calendar-check"></i> <span>Book Appointment</span>
+          <i class="fa-solid fa-user-clock"></i> <span>Check Availability</span>
         </button>
         <!-- Mobile Hamburger Toggle -->
         <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
@@ -119,11 +121,13 @@
       <li><a href="#doctors" class="mobile-nav-link">Doctors & OPD Timings</a></li>
       <li><a href="#facilities" class="mobile-nav-link">ICU & Facilities</a></li>
       <li><a href="#ayushman" class="mobile-nav-link">Ayushman & Cashless TPA</a></li>
+      <li><a href="media-gallery.html" class="mobile-nav-link">Media Gallery</a></li>
+      <li><a href="careers.html" class="mobile-nav-link">Careers</a></li>
       <li><a href="#contact" class="mobile-nav-link">Location & Contact</a></li>
     </ul>
     <div class="mobile-drawer-actions">
       <button class="btn btn-primary w-full" id="mobileBookBtn">
-        <i class="fa-regular fa-calendar-check"></i> Book OPD Appointment
+        <i class="fa-solid fa-user-clock"></i> Check Doctor Availability
       </button>
       <a href="tel:+919425529769" class="btn btn-emergency w-full mt-2">
         <i class="fa-solid fa-truck-medical"></i> 24/7 Emergency: +91 94255 29769
@@ -178,7 +182,7 @@
         <!-- Hero Action Buttons -->
         <div class="hero-ctas">
           <button class="btn btn-primary btn-lg" id="heroBookBtn">
-            <i class="fa-regular fa-calendar-check"></i> Book OPD Consultation
+            <i class="fa-solid fa-user-clock"></i> Ask Booking Mitra
           </button>
           <a href="tel:+919425529769" class="btn btn-emergency btn-lg">
             <i class="fa-solid fa-truck-medical"></i> 24/7 Emergency Line
@@ -283,8 +287,8 @@
           </div>
           <div class="quick-text">
             <h3>Find Doctor & OPD Slots</h3>
-            <p>Check doctor timings, qualifications, and book instant appointment.</p>
-            <a href="#doctors" class="quick-link">View OPD Timings <i class="fa-solid fa-arrow-right"></i></a>
+            <p>Check doctor departments and ask Booking Mitra about current availability.</p>
+            <a href="#department-teams" class="quick-link">Find the right doctor <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
 
@@ -575,6 +579,27 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DEPARTMENT & DOCTOR CONNECTION ================= -->
+  <section class="department-team-section" id="department-teams">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag"><i class="fa-solid fa-people-group"></i> Find the Right Team</div>
+        <h2 class="section-title">Departments and Doctors, Connected</h2>
+        <p class="section-subtitle">Choose a department to see the specialists associated with it. Each profile also states the doctor’s department.</p>
+      </div>
+      <div class="department-team-grid">
+        <article class="department-team-card"><h3>Urology & Renal Care</h3><p>Dr. Nikhar Jain</p><button class="department-doctor-link" data-dept="urology">View Urology Doctor <i class="fa-solid fa-arrow-right"></i></button></article>
+        <article class="department-team-card"><h3>GI & Laparoscopic Surgery</h3><p>Dr. Romil Jain</p><button class="department-doctor-link" data-dept="gastro">View GI Doctor <i class="fa-solid fa-arrow-right"></i></button></article>
+        <article class="department-team-card"><h3>Orthopedics & Trauma</h3><p>Dr. Mayank Jain</p><button class="department-doctor-link" data-dept="ortho">View Orthopedics Doctor <i class="fa-solid fa-arrow-right"></i></button></article>
+        <article class="department-team-card"><h3>Dermatology & Cosmetology</h3><p>Dr. Utsavi Jain</p><button class="department-doctor-link" data-dept="derma">View Dermatology Doctor <i class="fa-solid fa-arrow-right"></i></button></article>
+        <article class="department-team-card"><h3>Obstetrics & Gynecology</h3><p>Dr. Siddhi Sainik</p><button class="department-doctor-link" data-dept="gynae">View Gynecology Doctor <i class="fa-solid fa-arrow-right"></i></button></article>
+        <article class="department-team-card"><h3>General Surgery</h3><p>Dr. B. C. Jain</p><button class="department-doctor-link" data-dept="general">View General Surgery Doctor <i class="fa-solid fa-arrow-right"></i></button></article>
+        <article class="department-team-card"><h3>General Medicine & ICU</h3><p>Dr. Rahul Govindani · Dr. Tilak Gajendra</p><button class="department-doctor-link" data-dept="physician">View Physician Team <i class="fa-solid fa-arrow-right"></i></button></article>
+        <article class="department-team-card"><h3>Dental & Maxillofacial</h3><p>Dr. Deepika Jain · Dr. Jay Taank</p><button class="department-doctor-link" data-dept="dental">View Dental Team <i class="fa-solid fa-arrow-right"></i></button></article>
       </div>
     </div>
   </section>
@@ -996,6 +1021,33 @@
           </div>
         </div>
 
+        <!-- Dr. Jay Taank -->
+        <div class="doctor-card" data-dept="dental" data-name="Dr. Jay Taank">
+          <div class="doc-header">
+            <div class="doc-photo-frame">
+              <img src="assets/dr-jay-taank.png" alt="Dr. Jay Taank" class="doc-real-photo" onerror="this.src='assets/hospital-logo.jpg'">
+              <span class="verified-doc-badge"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+            <div class="doc-meta">
+              <span class="doc-badge">Specialist Dental</span>
+              <h3 class="doc-name">Dr. Jay Taank</h3>
+              <p class="doc-degrees">BDS, MDS (Orthodontics & Maxillofacial)</p>
+              <p class="doc-spec">Dental, Facial Trauma & Orthodontic Specialist</p>
+            </div>
+          </div>
+          <div class="doc-body">
+            <div class="timing-box">
+              <div class="timing-title"><i class="fa-regular fa-clock"></i> Consultation:</div>
+              <div class="timing-schedule"><span><strong>Mon - Sat:</strong> 10:00 AM - 01:30 PM & 05:30 PM - 08:30 PM</span><span><strong>Facial Trauma:</strong> 24/7 Emergency Support</span></div>
+            </div>
+            <div class="expertise-tags"><span>Facial Trauma</span><span>Root Canal & Braces</span><span>Dental Implants</span><span>Jaw Surgery</span></div>
+          </div>
+          <div class="doc-actions">
+            <button class="btn btn-primary btn-sm book-doc-btn" data-doctor="Dr. Jay Taank" data-dept="Dental & Maxillofacial"><i class="fa-solid fa-user-clock"></i> Check Availability</button>
+            <a href="https://wa.me/919425529769?text=Hello,%20I%20want%20to%20check%20Dr.%20Jay%20Taank%27s%20availability." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm"><i class="fa-brands fa-whatsapp"></i> Chat</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1188,11 +1240,11 @@
       <div class="faq-accordion-wrapper">
         <div class="faq-item active">
           <button class="faq-question">
-            <span>How do I book an OPD appointment with Dr. Nikhar Jain or Dr. Romil Jain?</span>
+            <span>How can I check whether Dr. Nikhar Jain or Dr. Romil Jain is available?</span>
             <i class="fa-solid fa-chevron-down"></i>
           </button>
           <div class="faq-answer">
-            <p>You can click the <strong>"Book Appointment"</strong> button on this website, send a message directly on our WhatsApp number (<strong>+91 94255 29769</strong>), or call <strong>07744-29769</strong>. Walk-in appointments are also available during morning and evening OPD hours.</p>
+            <p>Use <strong>Booking Mitra</strong> on this website, message our WhatsApp number (<strong>+91 94255 29769</strong>), or call <strong>07744-29769</strong>. Our team will confirm current doctor availability; this website does not create online appointments.</p>
           </div>
         </div>
 
@@ -1374,8 +1426,11 @@
             <li><a href="#about"><i class="fa-solid fa-angle-right"></i> About Us</a></li>
             <li><a href="#specialties"><i class="fa-solid fa-angle-right"></i> Specialties & Surgeries</a></li>
             <li><a href="#doctors"><i class="fa-solid fa-angle-right"></i> Doctors & OPD Timings</a></li>
+            <li><a href="#department-teams"><i class="fa-solid fa-angle-right"></i> Departments & Doctors</a></li>
             <li><a href="#facilities"><i class="fa-solid fa-angle-right"></i> 8-Bed ICU & Facilities</a></li>
             <li><a href="#ayushman"><i class="fa-solid fa-angle-right"></i> Ayushman Bharat Desk</a></li>
+            <li><a href="media-gallery.html"><i class="fa-solid fa-angle-right"></i> Media Gallery</a></li>
+            <li><a href="careers.html"><i class="fa-solid fa-angle-right"></i> Careers</a></li>
             <li><a href="#contact"><i class="fa-solid fa-angle-right"></i> Location & Contact</a></li>
           </ul>
         </div>
@@ -1420,13 +1475,13 @@
       <i class="fa-solid fa-phone-volume"></i>
       <span>Emergency</span>
     </a>
-    <a href="https://wa.me/919425529769?text=Hello%20Samda%20Hospital,%20I%20want%20to%20book%20an%20OPD%20appointment." target="_blank" rel="noopener noreferrer" class="mobile-float-btn float-whatsapp">
+    <a href="https://wa.me/919425529769?text=Hello%20Samda%20Hospital%2C%20I%20would%20like%20to%20check%20doctor%20availability." target="_blank" rel="noopener noreferrer" class="mobile-float-btn float-whatsapp">
       <i class="fa-brands fa-whatsapp"></i>
       <span>WhatsApp</span>
     </a>
     <button class="mobile-float-btn float-book" id="floatingBookBtn">
-      <i class="fa-regular fa-calendar-check"></i>
-      <span>Book OPD</span>
+      <i class="fa-solid fa-user-clock"></i>
+      <span>Availability</span>
     </button>
     <a href="https://maps.google.com/?q=Samda+Superspeciality+Hospital+Rajnandgaon" target="_blank" rel="noopener noreferrer" class="mobile-float-btn float-map">
       <i class="fa-solid fa-location-arrow"></i>
@@ -1434,21 +1489,21 @@
     </a>
   </div>
 
-  <!-- ================= MODAL 1: APPOINTMENT BOOKING ENGINE ================= -->
-  <div class="modal-backdrop" id="bookingModal">
+  <!-- ================= BOOKING MITRA: LIVE AVAILABILITY ENQUIRY ================= -->
+  <div class="modal-backdrop" id="bookingMitraModal">
     <div class="modal-box">
       <div class="modal-header">
         <div class="m-title-group">
-          <i class="fa-regular fa-calendar-check"></i>
+          <i class="fa-solid fa-user-clock"></i>
           <div>
-            <h3>Book OPD Appointment</h3>
-            <p>Samda Superspeciality Hospital, Rajnandgaon</p>
+            <h3>Booking Mitra</h3>
+            <p>Ask our team about a doctor's current availability.</p>
           </div>
         </div>
-        <button class="modal-close-btn" id="closeBookingModal" aria-label="Close modal">&times;</button>
+        <button class="modal-close-btn" id="closeBookingMitraModal" aria-label="Close modal">&times;</button>
       </div>
 
-      <form id="appointmentForm" class="modal-form" novalidate>
+      <form id="availabilityForm" class="modal-form" novalidate>
         <div class="form-group">
           <label for="bookDoctor">Select Doctor / Specialty <span class="required">*</span></label>
           <select id="bookDoctor" required>
@@ -1467,19 +1522,14 @@
           </select>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="bookDate">Preferred Date <span class="required">*</span></label>
-            <input type="date" id="bookDate" required>
-          </div>
-          <div class="form-group">
-            <label for="bookTime">Preferred Slot <span class="required">*</span></label>
-            <select id="bookTime" required>
-              <option value="Morning (10:30 AM - 01:30 PM)">Morning Slot (10:30 AM - 01:30 PM)</option>
-              <option value="Evening (05:30 PM - 08:30 PM)">Evening Slot (05:30 PM - 08:30 PM)</option>
-              <option value="Emergency (Immediate Triage)">Emergency / Immediate Walk-in</option>
-            </select>
-          </div>
+        <div class="form-group">
+          <label for="availabilityWindow">When would you like to visit? <span class="required">*</span></label>
+          <select id="availabilityWindow" required>
+            <option value="Today">Today</option>
+            <option value="Tomorrow">Tomorrow</option>
+            <option value="This week">This week</option>
+            <option value="Please suggest the next available time">Please suggest the next available time</option>
+          </select>
         </div>
 
         <div class="form-row">
@@ -1487,78 +1537,26 @@
             <label for="patientName">Patient Full Name <span class="required">*</span></label>
             <input type="text" id="patientName" name="patientName" autocomplete="name" placeholder="e.g. Ramesh Sahu" required>
           </div>
-          <div class="form-group">
-            <label for="patientAge">Age & Gender</label>
-            <input type="text" id="patientAge" placeholder="e.g. 42 / Male">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="patientPhone">Contact Mobile Number <span class="required">*</span></label>
-            <input type="tel" id="patientPhone" name="mobile" autocomplete="tel" placeholder="10-digit number" required pattern="[0-9]{10}">
-          </div>
-          <div class="form-group">
-            <label for="patientCity">City / Village</label>
-            <input type="text" id="patientCity" placeholder="e.g. Rajnandgaon, Dongargarh...">
-          </div>
         </div>
 
         <div class="form-group">
-          <label for="patientRemarks">Symptoms / Problem Description</label>
-          <textarea id="patientRemarks" rows="2" placeholder="Describe symptoms or reason for visit..."></textarea>
+          <label for="patientPhone">Contact Mobile Number <span class="required">*</span></label>
+          <input type="tel" id="patientPhone" name="mobile" autocomplete="tel" placeholder="10-digit number" required pattern="[0-9]{10}">
         </div>
 
-        <div class="form-payment-choice">
-          <label class="radio-label">
-            <input type="radio" name="paymentType" value="Self-Pay / Cash" checked>
-            <span>General / Self-Pay</span>
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="paymentType" value="Ayushman PM-JAY Card">
-            <span>Ayushman PM-JAY Card</span>
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="paymentType" value="Private Insurance / TPA">
-            <span>Cashless Mediclaim</span>
-          </label>
-        </div>
-
-        <!-- Dr. Jay Taank -->
-        <div class="doctor-card" data-dept="dental" data-name="Dr. Jay Taank">
-          <div class="doc-header">
-            <div class="doc-photo-frame">
-              <img src="assets/dr-jay-taank.png" alt="Dr. Jay Taank" class="doc-real-photo" onerror="this.src='assets/hospital-logo.jpg'">
-              <span class="verified-doc-badge"><i class="fa-solid fa-circle-check"></i></span>
-            </div>
-            <div class="doc-meta">
-              <span class="doc-badge">Specialist Dental</span>
-              <h3 class="doc-name">Dr. Jay Taank</h3>
-              <p class="doc-degrees">BDS, MDS (Orthodontics & Maxillofacial)</p>
-              <p class="doc-spec">Dental, Facial Trauma & Orthodontic Specialist</p>
-            </div>
-          </div>
-          <div class="doc-body">
-            <div class="timing-box">
-              <div class="timing-title"><i class="fa-regular fa-clock"></i> Consultation:</div>
-              <div class="timing-schedule"><span><strong>Mon - Sat:</strong> 10:00 AM - 01:30 PM & 05:30 PM - 08:30 PM</span><span><strong>Facial Trauma:</strong> 24/7 Emergency Support</span></div>
-            </div>
-            <div class="expertise-tags"><span>Facial Trauma</span><span>Root Canal & Braces</span><span>Dental Implants</span><span>Jaw Surgery</span></div>
-          </div>
-          <div class="doc-actions">
-            <button class="btn btn-primary btn-sm book-doc-btn" data-doctor="Dr. Jay Taank" data-dept="Dental & Maxillofacial"><i class="fa-regular fa-calendar-check"></i> Book OPD</button>
-            <a href="https://wa.me/919425529769?text=Hello,%20I%20want%20to%20consult%20Dr.%20Jay%20Taank." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-sm"><i class="fa-brands fa-whatsapp"></i> Chat</a>
-          </div>
+        <div class="form-group">
+          <label for="patientRemarks">Optional note</label>
+          <textarea id="patientRemarks" rows="2" placeholder="Share only the minimum information needed to check availability."></textarea>
         </div>
 
         <label class="consent-checkbox" for="bookingConsent">
           <input type="checkbox" id="bookingConsent" required>
-          <span>I agree to share my appointment details with Samda Hospital through WhatsApp. I understand that this is a request, not a confirmed appointment. Read the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+          <span>I agree to share these details with Samda Hospital through WhatsApp so Booking Mitra can check availability. This does not create an appointment. Read the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span>
         </label>
 
         <div class="modal-form-actions">
-          <button type="button" class="btn btn-whatsapp w-full" id="confirmWhatsappBtn">
-            <i class="fa-brands fa-whatsapp"></i> Continue to WhatsApp
+          <button type="button" class="btn btn-whatsapp w-full" id="checkAvailabilityBtn">
+            <i class="fa-brands fa-whatsapp"></i> Ask Booking Mitra on WhatsApp
           </button>
         </div>
       </form>
