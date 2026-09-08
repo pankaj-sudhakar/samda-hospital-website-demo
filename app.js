@@ -20,6 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
   updateDynamicYear();
 });
 
+document.addEventListener('samda:cms-rendered', () => {
+  initSpecialtyFilter();
+  initDoctorDirectory();
+  initDepartmentDoctorLinks();
+  renameBookingControls();
+  enhanceDoctorCards();
+});
+
 // ================= 1. NAVIGATION & MOBILE DRAWER =================
 function initNavigation() {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -205,7 +213,7 @@ function initDoctorDirectory() {
 }
 
 function initDepartmentDoctorLinks() {
-  const links = document.querySelectorAll('.department-doctor-link');
+  const links = document.querySelectorAll('.department-doctor-link, .doc-department[data-dept]');
   const deptSelect = document.getElementById('doctorDeptSelect');
   const doctors = document.getElementById('doctors');
 
