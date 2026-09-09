@@ -297,27 +297,6 @@ function enhanceDoctorCards() {
       link.setAttribute('aria-label', `View ${department} department`);
       meta.append(link);
     }
-
-    const profiles = window.SAMDA_DOCTOR_PROFILES || {};
-    const cardName = (card.dataset.name || '').toLowerCase().replace(/[^a-z]/g, '');
-    const profileSlug = Object.entries(profiles).find(([, profile]) => profile.name.toLowerCase().replace(/[^a-z]/g, '') === cardName)?.[0];
-    const actions = card.querySelector('.doc-actions');
-    if (profileSlug && actions && !actions.querySelector('.view-doctor-profile')) {
-      const nameHeading = card.querySelector('.doc-name');
-      if (nameHeading && !nameHeading.querySelector('a')) {
-        const nameLink = document.createElement('a');
-        nameLink.className = 'doc-profile-name';
-        nameLink.href = `doctor-profile.html?doctor=${encodeURIComponent(profileSlug)}`;
-        nameLink.textContent = profiles[profileSlug].name;
-        nameHeading.replaceChildren(nameLink);
-      }
-      const profileLink = document.createElement('a');
-      profileLink.className = 'btn btn-outline btn-sm view-doctor-profile';
-      profileLink.href = `doctor-profile.html?doctor=${encodeURIComponent(profileSlug)}`;
-      profileLink.innerHTML = '<i class="fa-regular fa-id-card"></i> View Profile';
-      profileLink.setAttribute('aria-label', `View ${profiles[profileSlug].name} profile`);
-      actions.prepend(profileLink);
-    }
   });
 }
 
