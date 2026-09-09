@@ -129,7 +129,7 @@ function initHeroSearch() {
     if (guidance) guidance.textContent = message;
   };
 
-  function performSearch(query) {
+  performCareSearch = function(query) {
     if (!query || !query.trim()) return;
     const q = query.trim().toLowerCase();
     const doctorInput = document.getElementById('doctorSearchInput');
@@ -154,19 +154,19 @@ function initHeroSearch() {
       updateGuidance('We could not confidently match that concern. You can browse all doctors below or ask Booking Mitra for guidance. This is not a diagnosis.');
       showToast('Showing doctors that may match your search');
     }
-  }
+  };
 
   if (searchBtn && searchInput) {
-    searchBtn.addEventListener('click', () => performSearch(searchInput.value));
+    searchBtn.addEventListener('click', () => performCareSearch(searchInput.value));
     searchInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') performSearch(searchInput.value);
+      if (e.key === 'Enter') performCareSearch(searchInput.value);
     });
   }
 
   tagBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const q = btn.getAttribute('data-query');
-      performSearch(q);
+      performCareSearch(q);
     });
   });
 }
@@ -206,10 +206,12 @@ function initSpecialtyFilter() {
 
 // ================= 4. DOCTOR DIRECTORY FILTER & SEARCH =================
 let filterDoctors;
+let performCareSearch;
 
 function initDoctorDirectory() {
   const searchInput = document.getElementById('doctorSearchInput');
   const deptSelect = document.getElementById('doctorDeptSelect');
+  const careSearchBtn = document.getElementById('doctorCareSearchBtn');
   const doctorCards = document.querySelectorAll('.doctor-card');
 
   filterDoctors = function() {
@@ -234,6 +236,15 @@ function initDoctorDirectory() {
 
   if (searchInput) searchInput.addEventListener('input', filterDoctors);
   if (deptSelect) deptSelect.addEventListener('change', filterDoctors);
+  if (careSearchBtn && searchInput) {
+    careSearchBtn.addEventListener('click', () => performCareSearch?.(searchInput.value));
+    searchInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        performCareSearch?.(searchInput.value);
+      }
+    });
+  }
 
   // Doctor card book buttons
   const bookDocBtns = document.querySelectorAll('.book-doc-btn');
