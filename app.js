@@ -351,7 +351,7 @@ function initBookingMitra() {
       const time = document.getElementById('availabilityWindow').value || 'Today';
       const name = document.getElementById('patientName').value || 'Patient';
       const phone = document.getElementById('patientPhone').value || 'Not provided';
-      const remarks = document.getElementById('patientRemarks').value || 'Please share the next available consultation time.';
+      const remarks = document.getElementById('patientRemarks').value || 'Please share the next available time and request a callback.';
 
       const msg = `*BOOKING MITRA — DOCTOR AVAILABILITY REQUEST*%0A%0A` +
         `👤 *Patient Name:* ${encodeURIComponent(name)}%0A` +
@@ -359,7 +359,7 @@ function initBookingMitra() {
         `🩺 *Specialist:* ${encodeURIComponent(doctor)}%0A` +
         `⏰ *Preferred time:* ${encodeURIComponent(time)}%0A` +
         `📝 *Message:* ${encodeURIComponent(remarks)}%0A%0A` +
-        `_Please let me know the doctor's current availability. This is not an appointment booking._`;
+        `_Please check the doctor's current availability and request a callback. This is not an appointment booking._`;
 
       const waUrl = `https://wa.me/919425529769?text=${msg}`;
       window.open(waUrl, '_blank');
