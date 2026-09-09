@@ -84,42 +84,75 @@ function initHeroSearch() {
   const searchInput = document.getElementById('heroSearchInput');
   const searchBtn = document.getElementById('heroSearchBtn');
   const tagBtns = document.querySelectorAll('.tag-btn');
+  const guidance = document.getElementById('searchGuidance');
+
+  const careRoutes = [
+    {
+      department: 'Urology & Renal Care', doctor: 'Dr. Nikhar Jain', value: 'urology',
+      terms: ['kidney', 'stone', 'urine', 'urinary', 'urination', 'burning urine', 'prostate', 'bladder', 'urol', 'nikhar']
+    },
+    {
+      department: 'GI & Laparoscopic Surgery', doctor: 'Dr. Romil Jain', value: 'gastro',
+      terms: ['gas', 'acidity', 'acid reflux', 'indigestion', 'bloating', 'stomach', 'abdomen', 'abdominal', 'gallbladder', 'gall bladder', 'hernia', 'vomiting', 'constipation', 'diarrhea', 'loose motion', 'gastro', 'romil', 'laparo']
+    },
+    {
+      department: 'Orthopedics & Trauma', doctor: 'Dr. Mayank Jain', value: 'ortho',
+      terms: ['bone', 'fracture', 'joint', 'knee', 'shoulder', 'hip pain', 'back pain', 'neck pain', 'sprain', 'sports injury', 'arthritis', 'ortho', 'mayank']
+    },
+    {
+      department: 'Dermatology & Cosmetology', doctor: 'Dr. Utsavi Jain', value: 'derma',
+      terms: ['pimple', 'pimples', 'acne', 'skin', 'rash', 'itching', 'eczema', 'psoriasis', 'hair fall', 'hair loss', 'dandruff', 'derma', 'utsavi', 'laser']
+    },
+    {
+      department: 'Obstetrics & Gynecology', doctor: 'Dr. Siddhi Sainik', value: 'gynae',
+      terms: ['period', 'menstrual', 'pregnancy', 'pregnant', 'women health', 'gynae', 'gyne', 'gynec', 'pcos', 'pcod', 'delivery', 'infertility', 'siddhi']
+    },
+    {
+      department: 'General Surgery', doctor: 'Dr. B.C. Jain', value: 'general',
+      terms: ['piles', 'fissure', 'fistula', 'appendix', 'appendicitis', 'lump', 'wound', 'general surgery']
+    },
+    {
+      department: 'Dental & Maxillofacial', doctor: 'Dr. Deepika Jain', value: 'dental',
+      terms: ['tooth', 'teeth', 'dental', 'gum', 'mouth pain', 'jaw pain', 'toothache']
+    },
+    {
+      department: 'General Medicine & ICU', doctor: 'the physician team', value: 'physician',
+      terms: ['fever', 'cough', 'cold', 'weakness', 'tired', 'fatigue', 'infection', 'general medicine', 'physician']
+    },
+    {
+      department: 'Neurosurgery', doctor: 'Dr. Kuldeep Singh', value: 'neuro',
+      terms: ['headache', 'migraine', 'seizure', 'brain', 'spine', 'numbness', 'neuro', 'kuldeep']
+    }
+  ];
+
+  const updateGuidance = message => {
+    if (guidance) guidance.textContent = message;
+  };
 
   function performSearch(query) {
     if (!query || !query.trim()) return;
     const q = query.trim().toLowerCase();
-
-    // Check if query matches specialty or doctor
-    const specialtiesSection = document.getElementById('specialties');
     const doctorInput = document.getElementById('doctorSearchInput');
     const doctorDeptSelect = document.getElementById('doctorDeptSelect');
 
-    if (q.includes('kidney') || q.includes('stone') || q.includes('urol') || q.includes('nikhar') || q.includes('prostate')) {
-      if (doctorDeptSelect) doctorDeptSelect.value = 'urology';
-      filterDoctors();
-      document.getElementById('doctors').scrollIntoView({ behavior: 'smooth' });
-      showToast('Filtered doctors for Urology & Stone Care');
-    } else if (q.includes('gastro') || q.includes('gallbladder') || q.includes('hernia') || q.includes('romil') || q.includes('laparo')) {
-      if (doctorDeptSelect) doctorDeptSelect.value = 'gastro';
-      filterDoctors();
-      document.getElementById('doctors').scrollIntoView({ behavior: 'smooth' });
-      showToast('Filtered doctors for GI & Laparoscopic Surgery');
-    } else if (q.includes('ortho') || q.includes('bone') || q.includes('joint') || q.includes('knee') || q.includes('fracture') || q.includes('mayank')) {
-      if (doctorDeptSelect) doctorDeptSelect.value = 'ortho';
-      filterDoctors();
-      document.getElementById('doctors').scrollIntoView({ behavior: 'smooth' });
-      showToast('Filtered doctors for Orthopedics');
-    } else if (q.includes('skin') || q.includes('derma') || q.includes('laser') || q.includes('hair') || q.includes('utsavi') || q.includes('acne')) {
-      if (doctorDeptSelect) doctorDeptSelect.value = 'derma';
-      filterDoctors();
-      document.getElementById('doctors').scrollIntoView({ behavior: 'smooth' });
-      showToast('Filtered doctors for Dermatology & Laser Clinic');
+    const route = careRoutes.find(item => item.terms.some(term => q.includes(term)));
+    if (route) {
+      if (doctorInput) doctorInput.value = '';
+      if (doctorDeptSelect) doctorDeptSelect.value = route.value;
+      if (typeof filterDoctors === 'function') filterDoctors();
+      document.getElementById('doctors')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const emergencyNote = /fracture|bone|sprain|injury/.test(q) ? ' For a serious injury, use the 24/7 emergency line.' : '';
+      const message = `Care guide: ${route.department} — ${route.doctor}.${emergencyNote} This is not a diagnosis.`;
+      updateGuidance(message);
+      showToast(`Showing ${route.department}`);
     } else {
       if (doctorInput) {
         doctorInput.value = query;
-        filterDoctors();
+        if (typeof filterDoctors === 'function') filterDoctors();
       }
-      document.getElementById('doctors').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('doctors')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      updateGuidance('We could not confidently match that concern. You can browse all doctors below or ask Booking Mitra for guidance. This is not a diagnosis.');
+      showToast('Showing doctors that may match your search');
     }
   }
 

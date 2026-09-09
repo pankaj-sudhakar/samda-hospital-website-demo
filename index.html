@@ -176,16 +176,17 @@
         <div class="hero-search-box">
           <div class="search-input-group">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="heroSearchInput" placeholder="Search treatment (e.g. Kidney Stone, Gallbladder, Piles, Skin)...">
+            <input type="text" id="heroSearchInput" placeholder="Describe a concern: gas, pimples, bone fracture, tooth pain..." aria-describedby="searchGuidance">
             <button class="search-btn" id="heroSearchBtn">Find Care</button>
           </div>
           <div class="search-quick-tags">
-            <span>Popular:</span>
-            <button class="tag-btn" data-query="Urology">Laser Kidney Stone</button>
-            <button class="tag-btn" data-query="Gastro">Laparoscopic Gallbladder</button>
-            <button class="tag-btn" data-query="Orthopedics">Joint & Fracture</button>
-            <button class="tag-btn" data-query="Dermatology">Skin & Laser</button>
+            <span>Try:</span>
+            <button class="tag-btn" data-query="gas and acidity">Gas or acidity</button>
+            <button class="tag-btn" data-query="pimples and acne">Pimples or acne</button>
+            <button class="tag-btn" data-query="bone fracture">Bone fracture</button>
+            <button class="tag-btn" data-query="urine pain">Urine problem</button>
           </div>
+          <p class="search-guidance" id="searchGuidance" aria-live="polite">Describe a health concern in your own words. This guide helps you find the right department; it does not provide a diagnosis.</p>
         </div>
 
         <!-- Hero Action Buttons -->

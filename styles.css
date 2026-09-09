@@ -2290,6 +2290,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5rem;
 }
 
+.search-guidance {
+  margin: 0.65rem 0.5rem 0.2rem;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
 /* ================= DEPARTMENTS & DOCTORS CONNECTION ================= */
 .department-team-section {
   padding: 5rem 0;
