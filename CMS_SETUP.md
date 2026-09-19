@@ -6,8 +6,9 @@ This website keeps its approved, static content as a fallback. Once the Sanity p
 
 - **Doctors:** photo, designation, qualifications, specialties, expertise, timings, and one related department.
 - **Departments:** description, services, display order, and whether the department is visible.
-- **Media Gallery:** image, accessible image description, caption, category, and publish state.
+- **Media Gallery:** approved image or video upload, accessible description, caption, category, and publish state.
 - **Job vacancies:** title, department, employment type, description, closing date, and whether applications are open.
+- **Patient messages:** a secure integration can deliver consented website-form or WhatsApp Business messages to the Studio; direct personal WhatsApp chats are not automatically imported.
 
 Doctors and departments are connected through the doctor's **Related department** field. Editors must publish a department before selecting it for a doctor.
 

@@ -2560,6 +2560,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 1040px) { .media-gallery-grid { grid-template-columns: repeat(3, 1fr); } }
 .media-gallery-grid figure { margin: 0; overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--border-color); background: var(--surface-white); }
 .media-gallery-grid img { display: block; width: 100%; height: 230px; object-fit: cover; }
+.media-gallery-grid video { display: block; width: 100%; height: 230px; background: #071b2d; object-fit: cover; }
 .media-gallery-grid figcaption { padding: 0.85rem 1rem; font-weight: 700; }
 .social-corner { padding: 5rem 0; background: var(--primary-navy); color: #fff; }
 .social-corner h2 { color: #fff; font-size: 2.2rem; margin: 0.6rem 0; }

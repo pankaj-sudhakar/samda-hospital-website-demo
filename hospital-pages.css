@@ -1,0 +1,17 @@
+.page-nav { border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); background: #fff; }
+.page-nav .container { display: flex; gap: .25rem; overflow-x: auto; padding-top: .55rem; padding-bottom: .55rem; }
+.page-nav a { flex: 0 0 auto; padding: .45rem .6rem; color: var(--text-main); font-size: .82rem; font-weight: 700; text-decoration: none; }
+.page-nav a:hover, .page-nav a[aria-current="page"] { color: var(--primary-blue); background: #e8f3f5; }
+.page-hero { padding: clamp(2.75rem, 7vw, 5rem) 0; background: #eef5f6; }
+.page-hero h1 { max-width: 800px; margin: .65rem 0; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.1; }
+.page-hero p { max-width: 720px; font-size: 1.05rem; line-height: 1.7; }
+.page-content-section { padding: clamp(2.75rem, 7vw, 5rem) 0; }
+.page-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.page-info-card { display: flex; flex-direction: column; gap: .75rem; margin: 0; padding: 1.25rem; border: 1px solid var(--border-color); border-radius: 8px; background: #fff; box-shadow: var(--shadow-sm); }
+.page-info-card h3, .page-info-card figcaption { margin: 0; font-size: 1.15rem; font-weight: 700; }
+.page-info-card p { margin: 0; line-height: 1.6; }
+.page-info-card img { width: 100%; aspect-ratio: 16 / 10; border-radius: 5px; object-fit: cover; }
+.page-card-meta { color: var(--primary-blue); font-size: .88rem; font-weight: 700; }
+.doctor-page-card .page-doctor-photo { width: 92px; height: 92px; aspect-ratio: 1; border-radius: 50%; border: 3px solid #e8f3f5; }
+.page-steps { max-width: 800px; margin: 1.5rem 0; padding-left: 1.25rem; }
+.page-steps li { margin: .85rem 0; line-height: 1.6; }
