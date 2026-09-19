@@ -3023,3 +3023,30 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   from { transform: translateX(100%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
+
+/* Department profile pages */
+.department-profile-card {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.department-profile-title { margin: 0.45rem 0 1rem; color: var(--primary-navy); }
+.department-profile-overview { max-width: 760px; color: var(--text-muted); font-size: 1.05rem; line-height: 1.75; }
+.department-profile-card h2 { margin-top: 2.25rem; color: var(--primary-navy); }
+.department-profile-services { padding-left: 1.2rem; color: var(--text-muted); line-height: 1.8; }
+.department-doctor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.department-doctor-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.7rem; padding: 1rem; background: var(--surface-bg); border: 1px solid var(--border-color); border-radius: var(--radius-sm); }
+.department-doctor-card h3, .department-doctor-card p { margin: 0; }
+.department-doctor-card p { color: var(--text-muted); font-size: 0.9rem; }
+.department-doctor-photo { width: 76px; height: 76px; object-fit: cover; border: 3px solid #e8f3f5; border-radius: 50%; }
+.department-profile-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+
+@media (max-width: 520px) {
+  .department-profile-card { padding: 1.25rem; }
+  .department-profile-actions .btn { width: 100%; justify-content: center; }
+}
