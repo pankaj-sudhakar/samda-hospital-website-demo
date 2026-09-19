@@ -13,7 +13,7 @@
       "imageUrl": photo.asset->url
     },
     "media": *[_type == "mediaItem" && isPublished != false] | order(publishedAt desc) {
-      _id, title, altText, category, mediaType, "imageUrl": image.asset->url, "videoUrl": videoFile.asset->url
+      _id, title, altText, category, "imageUrl": image.asset->url
     },
     "jobs": *[_type == "jobPosting" && isOpen == true] | order(closingDate asc, title asc) {
       _id, title, employmentType, summary, requirements, closingDate,
@@ -164,27 +164,15 @@
     if (!grid || !media?.length) return
     grid.replaceChildren()
     media.forEach(item => {
+      const imageUrl = safeImageUrl(item.imageUrl)
+      if (!imageUrl) return
       const figure = document.createElement('figure')
-      if (item.mediaType === 'Video') {
-        const videoUrl = safeImageUrl(item.videoUrl)
-        if (!videoUrl) return
-        const video = document.createElement('video')
-        video.src = videoUrl
-        video.controls = true
-        video.preload = 'metadata'
-        video.setAttribute('aria-label', item.altText || item.title || 'Samda Hospital video')
-        figure.append(video)
-      } else {
-        const imageUrl = safeImageUrl(item.imageUrl)
-        if (!imageUrl) return
-        const image = document.createElement('img')
-        image.src = imageUrl
-        image.alt = item.altText || item.title || 'Samda Hospital gallery image'
-        image.loading = 'lazy'
-        image.decoding = 'async'
-        figure.append(image)
-      }
-      figure.append(create('figcaption', '', item.title || item.category || 'Samda Hospital'))
+      const image = document.createElement('img')
+      image.src = imageUrl
+      image.alt = item.altText || item.title || 'Samda Hospital gallery image'
+      image.loading = 'lazy'
+      image.decoding = 'async'
+      figure.append(image, create('figcaption', '', item.title || item.category || 'Samda Hospital'))
       grid.append(figure)
     })
   }

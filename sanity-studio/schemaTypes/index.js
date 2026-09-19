@@ -3,6 +3,5 @@ import { department } from './department.js'
 import { mediaItem } from './mediaItem.js'
 import { jobPosting } from './jobPosting.js'
 import { siteSettings } from './siteSettings.js'
-import { patientInquiry } from './patientInquiry.js'
 
-export const schemaTypes = [doctor, department, mediaItem, jobPosting, patientInquiry, siteSettings]
+export const schemaTypes = [doctor, department, mediaItem, jobPosting, siteSettings]
