@@ -27,7 +27,7 @@
   if (page === 'departments') {
     const node = section('Specialities & Departments', 'Explore departments and the associated specialists. Confirm availability with Booking Mitra before visiting.')
     const grid = el('div', 'page-card-grid')
-    departments.forEach(([name, key, doctors, description]) => { const card = el('article', 'page-info-card'); card.append(el('h3', '', name), el('p', '', description), el('p', 'page-card-meta', `Associated doctors: ${doctors}`), link('View department information', `department-profile.html?department=${encodeURIComponent(key)}`, 'quick-link')); grid.append(card) })
+    departments.forEach(([name, key, doctors, description]) => { const card = el('article', 'page-info-card'); card.append(el('h3', '', name), el('p', '', description), el('p', 'page-card-meta', `Associated doctors: ${doctors}`), link('Find doctors', `doctors.html?department=${encodeURIComponent(key)}`, 'quick-link')); grid.append(card) })
     node.append(grid); root.append(node)
   }
 

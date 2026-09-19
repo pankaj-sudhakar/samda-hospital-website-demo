@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initBookingMitra();
   renameBookingControls();
   enhanceDoctorCards();
-  enhanceDepartmentCards();
   optimizeImages();
   initInsuranceLookup();
   initFAQAccordion();
@@ -27,7 +26,6 @@ document.addEventListener('samda:cms-rendered', () => {
   initDepartmentDoctorLinks();
   renameBookingControls();
   enhanceDoctorCards();
-  enhanceDepartmentCards();
 });
 
 // ================= 1. NAVIGATION & MOBILE DRAWER =================
@@ -294,7 +292,7 @@ function enhanceDoctorCards() {
     if (department && meta && !meta.querySelector('.doc-department')) {
       const link = document.createElement('a');
       link.className = 'doc-department';
-      link.href = `department-profile.html?department=${encodeURIComponent(card.dataset.dept)}`;
+      link.href = '#department-teams';
       link.textContent = department;
       link.setAttribute('aria-label', `View ${department} department`);
       meta.append(link);
@@ -320,24 +318,6 @@ function enhanceDoctorCards() {
       profileLink.setAttribute('aria-label', `View ${profiles[profileSlug].name} profile`);
       actions.prepend(profileLink);
     }
-  });
-}
-
-function enhanceDepartmentCards() {
-  const departments = window.SAMDA_DEPARTMENT_PROFILES || {};
-
-  document.querySelectorAll('.specialty-card[data-category]').forEach(card => {
-    const slug = card.dataset.category;
-    const department = departments[slug];
-    const footer = card.querySelector('.card-footer');
-    if (!department || !footer || footer.querySelector('.view-department-profile')) return;
-
-    const link = document.createElement('a');
-    link.className = 'btn btn-outline btn-sm view-department-profile';
-    link.href = `department-profile.html?department=${encodeURIComponent(slug)}`;
-    link.innerHTML = '<i class="fa-solid fa-building-user"></i> Department Info';
-    link.setAttribute('aria-label', `View ${department.title} information`);
-    footer.prepend(link);
   });
 }
 
