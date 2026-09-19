@@ -9,14 +9,6 @@
     ['General Medicine & ICU', 'physician', 'Dr. Rahul Govindani · Dr. Tilak Gajendra', 'Physician and critical-care consultations.'],
     ['Dental & Maxillofacial', 'dental', 'Dr. Deepika Jain · Dr. Jay Taank', 'Dental and maxillofacial consultations.']
   ]
-  const facilities = [
-    ['facility-icu.jpg', 'Critical care ICU', 'Critical-care facility information.'],
-    ['facility-ot.jpg', 'Operation theatre', 'Operation theatre facility information.'],
-    ['facility-patho.jpg', 'Pathology laboratory', 'Laboratory facility information.'],
-    ['facility-ambulance.jpg', 'Emergency ambulance', 'Emergency transport support.'],
-    ['facility-ward.jpg', 'Patient ward', 'Patient ward facility information.'],
-    ['facility-reception.jpg', 'Reception', 'Reception and patient-support area.']
-  ]
   const root = document.getElementById('pageContent')
   if (!root) return
   const page = document.body.dataset.page
@@ -42,14 +34,6 @@
       grid.append(card)
     })
     node.append(grid); root.append(node)
-  }
-
-  if (page === 'facilities') {
-    const node = section('Facilities & Media Gallery', 'A look at Samda Hospital facilities and public hospital updates. Publish new approved images in the Media Gallery through the content dashboard.')
-    const grid = el('div', 'page-card-grid facility-page-grid')
-    facilities.forEach(([imageName, title, description]) => { const card = el('figure', 'page-info-card'); const image = document.createElement('img'); image.src = `assets/${imageName}`; image.alt = title; image.loading = 'lazy'; image.decoding = 'async'; card.append(image, el('figcaption', '', title), el('p', '', description)); grid.append(card) })
-    node.append(grid, link('Open Media Gallery', 'media-gallery.html', 'btn btn-primary'))
-    root.append(node)
   }
 
   if (page === 'ayushman') {
