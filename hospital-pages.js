@@ -52,13 +52,6 @@
     root.append(node)
   }
 
-  if (page === 'about') {
-    const node = section('About Samda Hospital', 'Samda Superspeciality Hospital serves patients in Rajnandgaon and surrounding areas with doctor, department, facility and patient-information resources.')
-    const grid = el('div', 'page-card-grid')
-    ;[['Patient-focused care', 'Find doctors, departments, contact options and availability guidance in one place.'], ['Before you visit', 'Please confirm OPD availability, insurance or scheme eligibility, and any clinical information with the hospital team.'], ['For urgent care', 'Do not use web enquiries for emergencies. Call the emergency line or local emergency services immediately.']].forEach(([title, text]) => { const card = el('article', 'page-info-card'); card.append(el('h3', '', title), el('p', '', text)); grid.append(card) })
-    node.append(grid); root.append(node)
-  }
-
   if (page === 'ayushman') {
     const node = section('Ayushman & Cashless TPA', 'Get hospital guidance on Ayushman PM-JAY and cashless TPA options before admission.')
     const steps = el('ol', 'page-steps')
