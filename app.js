@@ -37,24 +37,45 @@ function initNavigation() {
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
   const navLinks = document.querySelectorAll('.nav-link');
 
+  let lastFocusedElement;
+
   function openDrawer() {
+    lastFocusedElement = document.activeElement;
     mobileDrawer.classList.add('open');
     drawerOverlay.classList.add('active');
+    mobileDrawer.removeAttribute('hidden');
+    drawerOverlay.removeAttribute('hidden');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    closeDrawerBtn?.focus();
   }
 
   function closeDrawer() {
     mobileDrawer.classList.remove('open');
     drawerOverlay.classList.remove('active');
+    mobileDrawer.setAttribute('hidden', '');
+    drawerOverlay.setAttribute('hidden', '');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    lastFocusedElement?.focus();
   }
 
-  if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openDrawer);
+  if (mobileDrawer) mobileDrawer.setAttribute('hidden', '');
+  if (drawerOverlay) drawerOverlay.setAttribute('hidden', '');
+  if (mobileMenuBtn) {
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    mobileMenuBtn.setAttribute('aria-controls', 'mobileDrawer');
+    mobileMenuBtn.addEventListener('click', openDrawer);
+  }
   if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
   if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
 
   mobileNavLinks.forEach(link => {
     link.addEventListener('click', closeDrawer);
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileDrawer?.classList.contains('open')) closeDrawer();
   });
 
   // Active Link Highlighting on Scroll
@@ -86,45 +107,6 @@ function initHeroSearch() {
   const tagBtns = document.querySelectorAll('.tag-btn');
   const guidance = document.getElementById('searchGuidance');
 
-  const careRoutes = [
-    {
-      department: 'Urology & Renal Care', doctor: 'Dr. Nikhar Jain', value: 'urology',
-      terms: ['kidney', 'stone', 'urine', 'urinary', 'urination', 'burning urine', 'prostate', 'bladder', 'urol', 'nikhar']
-    },
-    {
-      department: 'GI & Laparoscopic Surgery', doctor: 'Dr. Romil Jain', value: 'gastro',
-      terms: ['gas', 'acidity', 'acid reflux', 'indigestion', 'bloating', 'stomach', 'abdomen', 'abdominal', 'gallbladder', 'gall bladder', 'hernia', 'vomiting', 'constipation', 'diarrhea', 'loose motion', 'gastro', 'romil', 'laparo']
-    },
-    {
-      department: 'Orthopedics & Trauma', doctor: 'Dr. Mayank Jain', value: 'ortho',
-      terms: ['bone', 'fracture', 'joint', 'knee', 'shoulder', 'hip pain', 'back pain', 'neck pain', 'sprain', 'sports injury', 'arthritis', 'ortho', 'mayank']
-    },
-    {
-      department: 'Dermatology & Cosmetology', doctor: 'Dr. Utsavi Jain', value: 'derma',
-      terms: ['pimple', 'pimples', 'acne', 'skin', 'rash', 'itching', 'eczema', 'psoriasis', 'hair fall', 'hair loss', 'dandruff', 'derma', 'utsavi', 'laser']
-    },
-    {
-      department: 'Obstetrics & Gynecology', doctor: 'Dr. Siddhi Sainik', value: 'gynae',
-      terms: ['period', 'menstrual', 'pregnancy', 'pregnant', 'women health', 'gynae', 'gyne', 'gynec', 'pcos', 'pcod', 'delivery', 'infertility', 'siddhi']
-    },
-    {
-      department: 'General Surgery', doctor: 'Dr. B.C. Jain', value: 'general',
-      terms: ['piles', 'fissure', 'fistula', 'appendix', 'appendicitis', 'lump', 'wound', 'general surgery']
-    },
-    {
-      department: 'Dental & Maxillofacial', doctor: 'Dr. Deepika Jain', value: 'dental',
-      terms: ['tooth', 'teeth', 'dental', 'gum', 'mouth pain', 'jaw pain', 'toothache']
-    },
-    {
-      department: 'General Medicine & ICU', doctor: 'the physician team', value: 'physician',
-      terms: ['fever', 'cough', 'cold', 'weakness', 'tired', 'fatigue', 'infection', 'general medicine', 'physician']
-    },
-    {
-      department: 'Neurosurgery', doctor: 'Dr. Kuldeep Singh', value: 'neuro',
-      terms: ['headache', 'migraine', 'seizure', 'brain', 'spine', 'numbness', 'neuro', 'kuldeep']
-    }
-  ];
-
   const updateGuidance = message => {
     if (guidance) guidance.textContent = message;
   };
@@ -135,25 +117,12 @@ function initHeroSearch() {
     const doctorInput = document.getElementById('doctorSearchInput');
     const doctorDeptSelect = document.getElementById('doctorDeptSelect');
 
-    const route = careRoutes.find(item => item.terms.some(term => q.includes(term)));
-    if (route) {
-      if (doctorInput) doctorInput.value = '';
-      if (doctorDeptSelect) doctorDeptSelect.value = route.value;
-      if (typeof filterDoctors === 'function') filterDoctors();
-      document.getElementById('doctors')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      const emergencyNote = /fracture|bone|sprain|injury/.test(q) ? ' For a serious injury, use the 24/7 emergency line.' : '';
-      const message = `Care guide: ${route.department} — ${route.doctor}.${emergencyNote} This is not a diagnosis.`;
-      updateGuidance(message);
-      showToast(`Showing ${route.department}`);
-    } else {
-      if (doctorInput) {
-        doctorInput.value = query;
-        if (typeof filterDoctors === 'function') filterDoctors();
-      }
-      document.getElementById('doctors')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      updateGuidance('We could not confidently match that concern. You can browse all doctors below or ask Booking Mitra for guidance. This is not a diagnosis.');
-      showToast('Showing doctors that may match your search');
-    }
+    if (doctorInput) doctorInput.value = query;
+    if (doctorDeptSelect) doctorDeptSelect.value = 'all';
+    if (typeof filterDoctors === 'function') filterDoctors();
+    document.getElementById('doctors')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    updateGuidance(`Showing doctors and departments matching “${q}”. If you are unsure which specialist to see, please call or message reception for guidance.`);
+    showToast('Showing matching doctors and departments');
   };
 
   if (searchBtn && searchInput) {
@@ -213,11 +182,38 @@ function initDoctorDirectory() {
   const deptSelect = document.getElementById('doctorDeptSelect');
   const careSearchBtn = document.getElementById('doctorCareSearchBtn');
   const doctorCards = document.querySelectorAll('.doctor-card');
+  const filterBar = document.querySelector('.doctor-filter-bar');
+  let resultsStatus = document.getElementById('doctorResultsStatus');
+  let clearFiltersButton = document.getElementById('clearDoctorFilters');
+
+  if (filterBar && !resultsStatus) {
+    resultsStatus = document.createElement('p');
+    resultsStatus.id = 'doctorResultsStatus';
+    resultsStatus.className = 'doctor-results-status';
+    resultsStatus.setAttribute('aria-live', 'polite');
+    filterBar.insertAdjacentElement('afterend', resultsStatus);
+  }
+  if (filterBar && !clearFiltersButton) {
+    clearFiltersButton = document.createElement('button');
+    clearFiltersButton.id = 'clearDoctorFilters';
+    clearFiltersButton.type = 'button';
+    clearFiltersButton.className = 'clear-doctor-filters';
+    clearFiltersButton.textContent = 'Clear filters';
+    clearFiltersButton.hidden = true;
+    resultsStatus?.insertAdjacentElement('afterend', clearFiltersButton);
+    clearFiltersButton.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      if (deptSelect) deptSelect.value = 'all';
+      filterDoctors();
+      searchInput?.focus();
+    });
+  }
 
   filterDoctors = function() {
     const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
     const selectedDept = deptSelect ? deptSelect.value.toLowerCase() : 'all';
 
+    let visibleCount = 0;
     doctorCards.forEach(card => {
       const docName = card.getAttribute('data-name').toLowerCase();
       const docDept = card.getAttribute('data-dept').toLowerCase();
@@ -228,10 +224,14 @@ function initDoctorDirectory() {
 
       if (matchesSearch && matchesDept) {
         card.style.display = 'flex';
+        visibleCount += 1;
       } else {
         card.style.display = 'none';
       }
     });
+    const hasFilter = Boolean(query) || selectedDept !== 'all';
+    if (resultsStatus) resultsStatus.textContent = hasFilter ? `${visibleCount} doctor${visibleCount === 1 ? '' : 's'} found.` : '';
+    if (clearFiltersButton) clearFiltersButton.hidden = !hasFilter;
   };
 
   if (searchInput) searchInput.addEventListener('input', filterDoctors);
@@ -340,14 +340,30 @@ function initBookingMitra() {
   const availabilityForm = document.getElementById('availabilityForm');
   const confirmWhatsappBtn = document.getElementById('checkAvailabilityBtn');
 
+  let lastFocusedElement;
+
   function openModal() {
+    lastFocusedElement = document.activeElement;
     bookingModal.classList.add('active');
+    bookingModal.removeAttribute('hidden');
+    bookingModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    closeBookingModalBtn?.focus();
   }
 
   function closeModal() {
     bookingModal.classList.remove('active');
+    bookingModal.setAttribute('hidden', '');
+    bookingModal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    lastFocusedElement?.focus();
+  }
+
+  if (bookingModal) {
+    bookingModal.setAttribute('role', 'dialog');
+    bookingModal.setAttribute('aria-modal', 'true');
+    bookingModal.setAttribute('aria-hidden', 'true');
+    bookingModal.setAttribute('hidden', '');
   }
 
   if (quickBookBtn) quickBookBtn.addEventListener('click', openModal);
@@ -363,6 +379,10 @@ function initBookingMitra() {
       if (e.target === bookingModal) closeModal();
     });
   }
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && bookingModal?.classList.contains('active')) closeModal();
+  });
 
   // Confirm via WhatsApp
   if (confirmWhatsappBtn) {
@@ -413,7 +433,10 @@ function openBookingMitraWithDoctor(doctorName) {
 
   if (bookingModal) {
     bookingModal.classList.add('active');
+    bookingModal.removeAttribute('hidden');
+    bookingModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    document.getElementById('closeBookingMitraModal')?.focus();
   }
 }
 
@@ -445,13 +468,28 @@ function initInsuranceLookup() {
 function initFAQAccordion() {
   const faqItems = document.querySelectorAll('.faq-item');
 
-  faqItems.forEach(item => {
+  faqItems.forEach((item, index) => {
     const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!question || !answer) return;
+    const answerId = `faq-answer-${index + 1}`;
+    answer.id = answerId;
+    question.setAttribute('aria-controls', answerId);
+    const initiallyOpen = item.classList.contains('active');
+    question.setAttribute('aria-expanded', initiallyOpen ? 'true' : 'false');
+    answer.hidden = !initiallyOpen;
     question.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
-      faqItems.forEach(i => i.classList.remove('active'));
+      faqItems.forEach(i => {
+        i.classList.remove('active');
+        i.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+        const otherAnswer = i.querySelector('.faq-answer');
+        if (otherAnswer) otherAnswer.hidden = true;
+      });
       if (!isActive) {
         item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+        answer.hidden = false;
       }
     });
   });

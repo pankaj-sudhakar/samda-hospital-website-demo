@@ -147,16 +147,11 @@
       <div class="shape shape-2"></div>
       <div class="shape shape-3"></div>
     </div>
-    <div class="hero-floating-gallery" aria-hidden="true">
-      <img src="assets/facility-reception.jpg" alt="" class="hero-gallery-tile hero-gallery-tile-one" loading="lazy" decoding="async">
-      <img src="assets/facility-icu.jpg" alt="" class="hero-gallery-tile hero-gallery-tile-two" loading="lazy" decoding="async">
-      <img src="assets/facility-ward.jpg" alt="" class="hero-gallery-tile hero-gallery-tile-three" loading="lazy" decoding="async">
-    </div>
     <div class="container hero-container">
       <div class="hero-content">
         <div class="hero-badge-group">
           <div class="hero-badge">
-            <i class="fa-solid fa-star"></i> Premier Superspeciality Hospital in Rajnandgaon
+            <i class="fa-solid fa-hospital"></i> Samda Superspeciality Hospital, Rajnandgaon
           </div>
           <div class="hero-cert-pill">
             <img src="assets/certification-nabh.png" alt="NABH entry-level accreditation mark" class="hero-cert-mini" onerror="this.style.display='none'">
@@ -169,36 +164,34 @@
           <span class="gradient-text">Treating with Expertise</span>
         </h1>
         <p class="hero-description">
-          Samda Superspeciality Hospital provides dedicated surgical excellence in <strong>Urology (Laser Kidney Stone/Prostate)</strong>, <strong>Gastrointestinal & Laparoscopic Surgery</strong>, <strong>Orthopedics & Joint Care</strong>, <strong>Dermatology</strong>, and <strong>24/7 Critical Care ICU</strong>.
+          Meet our medical team, explore hospital services, and find the information you need before your visit.
         </p>
 
         <!-- Search Bar Component -->
         <div class="hero-search-box">
           <div class="search-input-group">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="heroSearchInput" placeholder="Describe a concern: gas, pimples, bone fracture, tooth pain..." aria-describedby="searchGuidance">
-            <button class="search-btn" id="heroSearchBtn">Find Care</button>
+            <label class="sr-only" for="heroSearchInput">Search doctors or departments</label>
+            <input type="text" id="heroSearchInput" placeholder="Search a doctor or department" aria-describedby="searchGuidance">
+            <button class="search-btn" id="heroSearchBtn">Search</button>
           </div>
           <div class="search-quick-tags">
-            <span>Try:</span>
-            <button class="tag-btn" data-query="gas and acidity">Gas or acidity</button>
-            <button class="tag-btn" data-query="pimples and acne">Pimples or acne</button>
-            <button class="tag-btn" data-query="bone fracture">Bone fracture</button>
-            <button class="tag-btn" data-query="urine pain">Urine problem</button>
+            <span>Browse:</span>
+            <button class="tag-btn" data-query="urology">Urology</button>
+            <button class="tag-btn" data-query="gastro">GI Surgery</button>
+            <button class="tag-btn" data-query="orthopedic">Orthopedics</button>
+            <button class="tag-btn" data-query="dermatology">Dermatology</button>
           </div>
-          <p class="search-guidance" id="searchGuidance" aria-live="polite">Describe a health concern in your own words. This guide helps you find the right department; it does not provide a diagnosis.</p>
+          <p class="search-guidance" id="searchGuidance" aria-live="polite">Search by doctor name or department. For medical advice, please contact the hospital directly.</p>
         </div>
 
         <!-- Hero Action Buttons -->
         <div class="hero-ctas">
-          <button class="btn btn-primary btn-lg" id="heroBookBtn">
-            <i class="fa-solid fa-user-clock"></i> Check Availability & Callback
-          </button>
-          <a href="tel:+919425529769" class="btn btn-emergency btn-lg">
-            <i class="fa-solid fa-truck-medical"></i> 24/7 Emergency Line
+          <a href="#doctors" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-user-doctor"></i> Explore Our Doctors
           </a>
-          <a href="#ayushman" class="btn btn-light btn-lg">
-            <i class="fa-solid fa-id-card"></i> Ayushman PM-JAY
+          <a href="#contact" class="btn btn-light btn-lg">
+            <i class="fa-solid fa-location-dot"></i> Get Directions
           </a>
         </div>
 
@@ -235,8 +228,7 @@
               <img src="assets/facility-ot.jpg" alt="Samda Hospital Modular Operation Theatre" class="hero-facility-img" onerror="this.src='assets/facility-icu.jpg'">
               <div class="image-overlay">
                 <div class="top-overlay-tags">
-                  <span class="status-live"><span class="pulse"></span> 24/7 Operational</span>
-                  <span class="nabh-live-tag"><img src="assets/certification-nabh.png" alt="NABH" class="tag-cert-icon"> Certified Hospital</span>
+              <span class="status-live"><span class="pulse"></span> Hospital information</span>
                 </div>
                 <div class="banner-overlay-content">
                   <h3>Samda Superspeciality Hospital</h3>
@@ -246,31 +238,6 @@
             </div>
           </div>
 
-          <!-- Floating Doctor Highlight Card with Real Photos -->
-          <div class="floating-highlight-card float-top">
-            <div class="doctor-avatar-group">
-              <img src="assets/dr-romil-jain.jpg" alt="Dr. Romil Jain" class="avatar-stacked" title="Dr. Romil Jain (GI Surgery)">
-              <img src="assets/dr-nikhar-jain.png" alt="Dr. Nikhar Jain" class="avatar-stacked stack-2" title="Dr. Nikhar Jain (Urology)">
-              <img src="assets/dr-bc-jain.jpg" alt="Dr. B.C. Jain" class="avatar-stacked stack-3" title="Dr. B.C. Jain (Senior Surgeon)">
-            </div>
-            <div class="card-info">
-              <h4>Dr. Romil, Dr. Nikhar & Dr. B.C. Jain</h4>
-              <p>MCh / DNB Superspecialists</p>
-              <span class="badge-accent">Daily OPD Available</span>
-            </div>
-          </div>
-
-          <!-- Floating Cashless Card with Certification Badge -->
-          <div class="floating-highlight-card float-bottom">
-            <div class="cert-avatar-box">
-              <img src="assets/certification-nabh.png" alt="Certification Seal" class="floating-cert-img">
-            </div>
-            <div class="card-info">
-              <h4>Cashless Treatment Guidance</h4>
-              <p>Ayushman PM-JAY & insurance support</p>
-              <span class="badge-green"><i class="fa-solid fa-check"></i> Eligibility confirmation required</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -379,7 +346,7 @@
 
         <div class="about-content">
           <div class="section-tag"><i class="fa-solid fa-hospital"></i> About Samda Hospital</div>
-          <h2 class="section-title">Advance Healthcare in Rajnandgaon</h2>
+          <h2 class="section-title">Advanced Healthcare in Rajnandgaon</h2>
           <p class="lead-text">
             Established in 2021, Samda Superspeciality Hospital was founded with a singular mission: to eliminate the need for patients in Rajnandgaon and surrounding districts to travel to Raipur or Nagpur for critical surgeries.
           </p>
@@ -391,21 +358,21 @@
             <div class="highlight-item">
               <div class="h-icon"><i class="fa-solid fa-circle-check"></i></div>
               <div>
-                <h4>Zero Compromise on Patient Safety</h4>
-                <p>Strict infection control protocols, modular OTs, and dedicated post-operative recovery units.</p>
+                <h4>Patient safety and infection-control practices</h4>
+                <p>Please ask the hospital team about current safety practices, facilities and post-operative care arrangements.</p>
               </div>
             </div>
             <div class="highlight-item">
               <div class="h-icon"><i class="fa-solid fa-circle-check"></i></div>
               <div>
                 <h4>Transparent Pricing & Cashless Schemes</h4>
-                <p>No hidden charges, clear surgical package pricing, and dedicated insurance helpdesk.</p>
+                <p>Ask the hospital team for an estimate and guidance on available insurance or scheme processes.</p>
               </div>
             </div>
             <div class="highlight-item">
               <div class="h-icon"><i class="fa-solid fa-circle-check"></i></div>
               <div>
-                <h4>Serving Whole Western Chhattisgarh</h4>
+                <h4>Serving patients across western Chhattisgarh</h4>
                 <p>Conveniently located for patients across Rajnandgaon, Durg, Dongargarh, Balod, and Khairagarh.</p>
               </div>
             </div>
@@ -633,8 +600,8 @@
       <div class="doctor-filter-bar">
         <div class="search-doctor-input">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" id="doctorSearchInput" placeholder="Search another concern: gas, pimples, fracture..." aria-label="Search another health concern or doctor">
-          <button type="button" class="doctor-care-search-btn" id="doctorCareSearchBtn" aria-label="Find care for this concern"><i class="fa-solid fa-arrow-right"></i></button>
+          <input type="text" id="doctorSearchInput" placeholder="Search doctor or department" aria-label="Search doctor or department">
+          <button type="button" class="doctor-care-search-btn" id="doctorCareSearchBtn" aria-label="Search doctors"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
         <div class="doctor-dept-dropdown">
           <select id="doctorDeptSelect" aria-label="Filter Doctors by Specialty">
@@ -1147,9 +1114,9 @@
               <i class="fa-solid fa-shield-halved"></i> PM-JAY & CASHLESS HELP DESK
             </div>
           </div>
-          <h2>Free & Cashless Treatment Under Ayushman Bharat (PM-JAY)</h2>
+          <h2>Ayushman Bharat (PM-JAY) and cashless guidance</h2>
           <p>
-            Samda Superspeciality Hospital is an officially empanelled healthcare provider under <strong>Ayushman Bharat PM-JAY</strong> (Dr. Khubchand Baghel Swasthya Sahayata Yojana). Eligible patients can avail free surgical treatments up to ₹5,00,000.
+            The hospital team can guide patients regarding <strong>Ayushman Bharat PM-JAY</strong> and cashless options. Eligibility, approved packages and coverage must be confirmed directly with the hospital before admission or treatment.
           </p>
         </div>
 
@@ -1170,7 +1137,7 @@
               <div class="step-number">2</div>
               <div class="step-details">
                 <h4>Ayushman Mitra Verification</h4>
-                <p>Our in-house Ayushman Helpdesk verifies eligibility on the PM-JAY portal within 10 minutes.</p>
+                <p>The hospital helpdesk can guide you through eligibility verification. Timelines depend on current portal and hospital processes.</p>
               </div>
             </div>
 
@@ -1178,7 +1145,7 @@
               <div class="step-number">3</div>
               <div class="step-details">
                 <h4>Doctor Consultation & Pre-Auth</h4>
-                <p>Specialist diagnosis, treatment package booking, and instant digital approval.</p>
+                <p>Clinical assessment and any required pre-authorisation. Approval depends on the applicable scheme or insurer process.</p>
               </div>
             </div>
 
